@@ -1,5 +1,5 @@
 # Object file
-*.gitkeep
+#*.gitkeep
 
 # Ada Library Information
 #*.ali
