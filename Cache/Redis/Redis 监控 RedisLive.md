@@ -18,6 +18,7 @@ Redis Live是一个用来监控redis实例，分析查询语句并且有web界�
 - Python:2.7.10
 
 
+
 ## 三、安装依赖
 
 - pip install tornado
