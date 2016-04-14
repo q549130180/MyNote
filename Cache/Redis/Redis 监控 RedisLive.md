@@ -29,6 +29,28 @@ easy_install pip
 - pip install python-dateutil
 - pip install argparse
 
+Redis Python Client
+git clone https://github.com/andymccurdy/redis-py.git
+
+To install redis-py, simply:
+
+$ sudo pip install redis
+or alternatively (you really should be using pip though):
+
+$ sudo easy_install redis
+or from source:
+
+$ sudo python setup.py install
+Getting Started
+
+```python
+>>> import redis
+>>> r = redis.StrictRedis(host='localhost', port=6379, db=0)
+>>> r.set('foo', 'bar')
+True
+>>> r.get('foo')
+'bar'
+```
 
 ## 四、安装部署
 
@@ -47,34 +69,34 @@ vim redis-live.conf
 可以看出这个配置文件是json格式的，注意不要产生格式错误，对着原始的配置文件来
 原始的配置文件如下：
 ```json
-{  
-        "RedisServers":  
-        [   
-                {  
-                        "server": "154.17.59.99",  
-                        "port" : 6379  
-                },  
+{
+        "RedisServers":
+        [
+                {
+                        "server": "154.17.59.99",
+                        "port" : 6379
+                },
 
-                {  
-                        "server": "localhost",  
-                        "port" : 6380,  
-                        "password" : "some-password"  
-                }  
-        ],  
+                {
+                        "server": "localhost",
+                        "port" : 6380,
+                        "password" : "some-password"
+                }
+        ],
 
-        "DataStoreType" : "redis",  
+        "DataStoreType" : "redis",
 
-        "RedisStatsServer":  
-        {  
-                "server" : "ec2-184-72-166-144.compute-1.amazonaws.com",  
-                "port" : 6385  
-        },  
+        "RedisStatsServer":
+        {
+                "server" : "ec2-184-72-166-144.compute-1.amazonaws.com",
+                "port" : 6385
+        },
 
-        "SqliteStatsStore" :  
-        {  
-                "path":  "to your sql lite file"  
-        }  
-}  
+        "SqliteStatsStore" :
+        {
+                "path":  "to your sql lite file"
+        }
+}
 ```
 
 解析一下：
@@ -86,4 +108,4 @@ vim redis-live.conf
 
 **参考资料：**
 
-[CentOS7+Redis Live安装配置](http://www.cnblogs.com/madyina/p/4060556.html)
+[安装redis-live监控redis集群](http://blog.csdn.net/cxz_hijacker/article/details/16862389)
