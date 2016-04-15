@@ -8,7 +8,7 @@
 
 ## 一、简介
 
-Redis Live是一个用来监控redis实例，分析查询语句并且有web界面的监控工具，使用python编写。
+RedisLive是一个用来监控redis实例，分析查询语句并且有web界面的监控工具，使用python编写。
 
 
 ## 二、环境准备
@@ -22,6 +22,7 @@ Redis Live是一个用来监控redis实例，分析查询语句并且有web界�
 ## 三、安装依赖
 
 安装pip
+
 easy_install pip
 
 - pip install tornado
@@ -29,19 +30,7 @@ easy_install pip
 - pip install python-dateutil
 - pip install argparse
 
-Redis Python Client
-git clone https://github.com/andymccurdy/redis-py.git
 
-To install redis-py, simply:
-
-$ sudo pip install redis
-or alternatively (you really should be using pip though):
-
-$ sudo easy_install redis
-or from source:
-
-$ sudo python setup.py install
-Getting Started
 
 ```python
 >>> import redis
@@ -76,22 +65,18 @@ vim redis-live.conf
                         "server": "154.17.59.99",
                         "port" : 6379
                 },
-
                 {
                         "server": "localhost",
                         "port" : 6380,
                         "password" : "some-password"
                 }
         ],
-
         "DataStoreType" : "redis",
-
         "RedisStatsServer":
         {
                 "server" : "ec2-184-72-166-144.compute-1.amazonaws.com",
                 "port" : 6385
         },
-
         "SqliteStatsStore" :
         {
                 "path":  "to your sql lite file"
@@ -100,11 +85,28 @@ vim redis-live.conf
 ```
 
 解析一下：
-`RedisServers`: 就是所要监控的redis集群的所有主机，可以配置host, port, password，注意最后一个元素后面没有逗号。
-`DataStoreType`: 就是类似元数据存储的类型，默认是redis，也可以是sqlite；
-`RedisStatsServer`: 如果存储类型选择了reids，就需要配置此项，即另外拿出一个redis来存储其他redis的状态信息，也就是上面说的元数据。
-`SqliteStatisStore`: 如果存储类型选择了sqlite，就配置此项，指定一个路径保存sqlite文件。
+- `RedisServers`: 就是所要监控的redis集群的所有主机，可以配置host, port, password，注意最后一个元素后面没有逗号。
+- `DataStoreType`: 就是类似元数据存储的类型，默认是redis，也可以是sqlite；
+- `RedisStatsServer`: 如果存储类型选择了reids，就需要配置此项，即另外拿出一个redis来存储其他redis的状态信息，也就是上面说的元数据。
+- `SqliteStatisStore`: 如果存储类型选择了sqlite，就配置此项，指定一个路径保存sqlite文件。
+
 没仔细研究，估计是已经把sqlite文件包含在安装文件里头了。
+
+
+## 三、启动
+
+```
+./redis-monitor.py --duration=120
+./redis-live.py
+http://redisLive_host:8888/index.html
+```
+
+以上两个进程都是默认前台运行，可以弄到后台去执行
+```
+nohup ./redis-monitor.py --duration=36000 --quiet &
+nohup ./redis-live.py --log_file_prefix=/home/user/log/redis_live --logging=warning &
+```
+
 
 **参考资料：**
 
