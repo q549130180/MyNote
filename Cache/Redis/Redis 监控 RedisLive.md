@@ -17,8 +17,6 @@ RedisLive是一个用来监控redis实例，分析查询语句并且有web界面
 - OS:Cent OS 7.0
 - Python:2.7.10
 
-
-
 ## 三、安装依赖
 
 安装pip
@@ -31,7 +29,7 @@ easy_install pip
 - pip install argparse
 
 
-
+测试python的redis客户端
 ```python
 >>> import redis
 >>> r = redis.StrictRedis(host='localhost', port=6379, db=0)
@@ -59,28 +57,28 @@ vim redis-live.conf
 原始的配置文件如下：
 ```json
 {
-        "RedisServers":
-        [
-                {
-                        "server": "154.17.59.99",
-                        "port" : 6379
-                },
-                {
-                        "server": "localhost",
-                        "port" : 6380,
-                        "password" : "some-password"
-                }
-        ],
-        "DataStoreType" : "redis",
-        "RedisStatsServer":
+    "RedisServers":
+    [
         {
-                "server" : "ec2-184-72-166-144.compute-1.amazonaws.com",
-                "port" : 6385
+              "server": "154.17.59.99",
+              "port" : 6379
         },
-        "SqliteStatsStore" :
         {
-                "path":  "to your sql lite file"
+              "server": "localhost",
+              "port" : 6380,
+              "password" : "some-password"
         }
+    ],
+    "DataStoreType" : "redis",
+    "RedisStatsServer":
+    {
+        "server" : "ec2-184-72-166-144.compute-1.amazonaws.com",
+        "port" : 6385
+    },
+    "SqliteStatsStore" :
+    {
+        "path ":  "to your sql lite file"
+    }
 }
 ```
 
