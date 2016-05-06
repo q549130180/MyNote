@@ -77,16 +77,18 @@ vim /staples/apachehttpd/conf/httpd.conf
 
 2. `<Directory "/staples/apachehttpd/htdocs">`同样改为文件的存放路径
 
-3. 将htdocs文件夹下的index.html删除或改为index.html.bak
+3. 在最后一行添加：`AddDefaultCharset utf-8`,解决乱码问题
 
-4. 更改文件夹权限：`chmod -R 777 /staples/ftpServer`
+4. 将htdocs文件夹下的index.html删除或改为index.html.bak
+
+5. 更改文件夹权限：`chmod -R 777 /staples/ftpServer`
 ```
 cd /staples/apachehttpd/bin
 ```
-5. 启动：`apachectl start`
+6. 启动：`apachectl start`
 
-6. 访问:127.0.0.1:80就可以查看fileServer文件夹下的目录结构
+7. 访问:127.0.0.1:80就可以查看fileServer文件夹下的目录结构
 
-7. 127.0.0.1:80/123.jpg就可以直接访问文件
+8. 127.0.0.1:80/123.jpg就可以直接访问文件
 
-8. 停止：`apachectl stop`
+9. 停止：`apachectl stop`
